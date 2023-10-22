@@ -1,0 +1,7 @@
+.main {
+  padding: 2rem 0;
+
+  @include _767 {
+    padding: 4rem 0;
+  }
+}

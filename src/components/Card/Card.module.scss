@@ -7,7 +7,9 @@
   &__link {
     text-decoration: none;
     color: inherit;
-    &:hover, &:active, &:focus {
+    &:hover,
+    &:active,
+    &:focus {
       color: inherit;
     }
   }

@@ -10,7 +10,7 @@
     align-items: center;
     gap: 5rem;
   }
-  @include _1024{
+  @include _1024 {
     grid-template-columns: minmax(400px, 600px) 1fr;
   }
 
@@ -60,7 +60,7 @@
       font-weight: var(--fw-bold);
     }
 
-    @include _767{
+    @include _767 {
       flex-direction: row;
       align-items: center;
     }

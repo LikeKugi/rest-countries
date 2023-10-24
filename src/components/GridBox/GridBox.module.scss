@@ -13,7 +13,7 @@
     padding: 2.5rem 0;
   }
 
-  @include _1024{
+  @include _1024 {
     grid-template-columns: repeat(4, 1fr);
     gap: 4rem;
   }

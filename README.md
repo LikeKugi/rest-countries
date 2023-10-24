@@ -99,6 +99,7 @@ Use this section to outline areas that you want to continue focusing on in futur
 - [ESLint-config-prettier](https://github.com/prettier/eslint-config-prettier) - This site helped me to fix the config problem in eslint with prettier
 - [Prettier Fix script](https://prettier.io/docs/en/install) - This site helped me to configure prettier fix script
 - [.prettierrc.js](https://github.com/TheSwordBreaker/vite-reactts-eslint-prettier/blob/main/.prettierrc.js) - I used this config file in prettier
+- [stackoverflow change colors in react-icons](https://stackoverflow.com/questions/56636280/how-to-style-react-icons) - This site helped me to change color of svg icon
 
 ## Author
 

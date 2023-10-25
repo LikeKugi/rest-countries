@@ -9,7 +9,7 @@ const middleWare = applyMiddleware(compose(thunk.withExtraArgument({
   api,
 })))
 
-export const store = createStore(RootReducer, ['Use Redux'], middleWare)
+export const store = createStore(RootReducer,  middleWare)
 
 export type RootState = ReturnType<typeof store.getState>
 export type AppDispatch = typeof store.dispatch

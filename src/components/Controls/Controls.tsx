@@ -1,4 +1,4 @@
-import { JSX, useState } from 'react';
+import { JSX } from 'react';
 import styles from './Controls.module.scss';
 import Search from '@/components/Search/Search';
 import SelectBox from '@/components/SelectBox/SelectBox';
@@ -13,11 +13,9 @@ const optionsMap = {
 const options = Object.values(optionsMap);
 
 const Controls = (): JSX.Element => {
-  const [query, setQuery] = useState('');
   return (
     <div className={styles.controls}>
-      <Search search={query}
-              setSearch={setQuery}/>
+      <Search />
       <SelectBox options={options} />
     </div>
   );

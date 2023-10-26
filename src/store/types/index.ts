@@ -1,11 +1,12 @@
 import { ThemeConstants } from '@/store/theme/theme.constants';
 import { CountriesConstants } from '@/store/countries/countries.constants';
 import { ICountry } from '@/types/countriesTypes';
+import { ControlsConstants } from '@/store/controls/controls.constants';
 
 export type PayloadAction<T> = T
 
 export interface IAction<T> {
-  type: ThemeConstants | CountriesConstants | string,
+  type: ThemeConstants | CountriesConstants | ControlsConstants |string,
   payload: PayloadAction<T>
 }
 
@@ -22,4 +23,9 @@ export interface ICountriesInitialState {
   status: Status,
   error: string | null,
   list: ICountry[]
+}
+
+export interface IControlsInitialState {
+  query: string;
+  region: string;
 }

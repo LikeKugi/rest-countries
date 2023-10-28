@@ -13,6 +13,11 @@ export const controlsReducer = (state: IControlsInitialState = initialState, act
         ...state,
         query: action.payload as string,
       };
+    case ControlsConstants.SET_REGION:
+      return {
+        ...state,
+        region: action.payload as string,
+      }
     default:
       return state;
   }

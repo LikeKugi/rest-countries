@@ -5,3 +5,8 @@ export const setSearch: createActionFn<string> = (query) => ({
   type: ControlsConstants.SET_SEARCH,
   payload: query as string,
 })
+
+export const setRegion: createActionFn<string> = (region) => ({
+  type: ControlsConstants.SET_REGION,
+  payload: region as string,
+})

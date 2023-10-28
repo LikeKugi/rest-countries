@@ -10,13 +10,13 @@ import {
   selectVisibleCountries
 } from '@/store/countries/countries.selectors';
 import { Status } from '@/store/types';
-import { selectControlsQuery } from '@/store/controls/controls.selectors';
+import { selectControls } from '@/store/controls/controls.selectors';
 
 const HomePage = (): JSX.Element => {
 
-  const searchQuery = useAppSelector(selectControlsQuery);
+  const controlsQuery = useAppSelector(selectControls);
 
-  const countries: ICountry[] = useAppSelector(state => selectVisibleCountries(state, { search: searchQuery }));
+  const countries: ICountry[] = useAppSelector(state => selectVisibleCountries(state, controlsQuery));
 
   const loadingErrorData = useAppSelector(selectErrorCountries);
   const statusLoadingCountries = useAppSelector(selectStatusCountries);

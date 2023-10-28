@@ -1,14 +1,12 @@
 import { FC } from 'react';
-import Select, { StylesConfig } from 'react-select';
+import Select, { ActionMeta, MultiValue, SingleValue, StylesConfig } from 'react-select';
 import styles from './SelectBox.module.scss';
-
-interface IOption {
-  value: string;
-  label: string;
-}
+import { IOption } from '@/types/base';
 
 interface ISelectBoxProps {
   options: IOption[];
+  value: IOption;
+  onChange: (newValue: MultiValue<IOption> | SingleValue<IOption>, actionMeta: ActionMeta<IOption>) => void;
 }
 
 const colourStyles: StylesConfig<IOption> = {
@@ -39,16 +37,16 @@ const colourStyles: StylesConfig<IOption> = {
   },
 };
 
-
-const SelectBox: FC<ISelectBoxProps> = ({ options }) => {
-
+const SelectBox: FC<ISelectBoxProps> = ({ options, value, onChange }) => {
   return (
     <Select className={styles.select}
             defaultValue={null}
             options={options}
-            onChange={e => console.log(e)}
+            onChange={onChange}
             placeholder={'Filter by Region'}
             isClearable={true}
+            isSearchable={false}
+            value={value}
             styles={colourStyles}/>
   );
 };

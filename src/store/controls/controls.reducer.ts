@@ -18,6 +18,12 @@ export const controlsReducer = (state: IControlsInitialState = initialState, act
         ...state,
         region: action.payload as string,
       }
+    case ControlsConstants.CLEAR_CONTROLS:
+      return {
+        ...state,
+        query: '',
+        region: '',
+      }
     default:
       return state;
   }

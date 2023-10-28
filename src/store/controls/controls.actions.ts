@@ -10,3 +10,8 @@ export const setRegion: createActionFn<string> = (region) => ({
   type: ControlsConstants.SET_REGION,
   payload: region as string,
 })
+
+export const clearControls: createActionFn<null> = () => ({
+  type: ControlsConstants.CLEAR_CONTROLS,
+  payload: null,
+})

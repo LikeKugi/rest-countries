@@ -1,95 +1,31 @@
-import { JSX } from 'react';
+import { JSX, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import Button from '@/components/Button/Button';
 import { IoArrowBack } from 'react-icons/io5';
 import Info from '@/components/Info/Info';
-import { ICountry } from '@/types/countriesTypes';
+import { useAppDispatch, useAppSelector } from '@/store/hooks';
+import { selectDetailsCountry, selectDetailsStatus } from '@/store/details/details.selectors';
+import { loadCountryByCode } from '@/store/details/details.actions';
+import { IAction, Status } from '@/store/types';
 
 const DetailsPage = (): JSX.Element => {
   const { countryName } = useParams();
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
-  const currentCountry: ICountry = {
-    name: 'Afghanistan',
-    topLevelDomain: ['.af'],
-    alpha2Code: 'AF',
-    alpha3Code: 'AFG',
-    callingCodes: ['93'],
-    capital: 'Kabul',
-    altSpellings: ['AF', 'Afġānistān'],
-    subregion: 'Southern Asia',
-    region: 'Asia',
-    population: 40218234,
-    latlng: [33, 65],
-    demonym: 'Afghan',
-    area: 652230,
-    timezones: ['UTC+04:30'],
-    borders: ['IRN', 'PAK', 'TKM', 'UZB', 'TJK', 'CHN'],
-    nativeName: 'افغانستان',
-    numericCode: '004',
-    flags: {
-      svg: 'https://upload.wikimedia.org/wikipedia/commons/5/5c/Flag_of_the_Taliban.svg',
-      png: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Flag_of_the_Taliban.svg/320px-Flag_of_the_Taliban.svg.png',
-    },
-    currencies: [
-      {
-        code: 'AFN',
-        name: 'Afghan afghani',
-        symbol: '؋',
-      },
-    ],
-    languages: [
-      {
-        iso639_1: 'ps',
-        iso639_2: 'pus',
-        name: 'Pashto',
-        nativeName: 'پښتو',
-      },
-      {
-        iso639_1: 'uz',
-        iso639_2: 'uzb',
-        name: 'Uzbek',
-        nativeName: 'Oʻzbek',
-      },
-      {
-        iso639_1: 'tk',
-        iso639_2: 'tuk',
-        name: 'Turkmen',
-        nativeName: 'Türkmen',
-      },
-    ],
-    translations: {
-      br: 'Afghanistan',
-      pt: 'Afeganistão',
-      nl: 'Afghanistan',
-      hr: 'Afganistan',
-      fa: 'افغانستان',
-      de: 'Afghanistan',
-      es: 'Afganistán',
-      fr: 'Afghanistan',
-      ja: 'アフガニスタン',
-      it: 'Afghanistan',
-      hu: 'Afganisztán',
-    },
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/5/5c/Flag_of_the_Taliban.svg',
-    regionalBlocs: [
-      {
-        acronym: 'SAARC',
-        name: 'South Asian Association for Regional Cooperation',
-      },
-    ],
-    cioc: 'AFG',
-    independent: true,
-  };
+  const currentCountry = useAppSelector(selectDetailsCountry);
+  const currentStatus = useAppSelector(selectDetailsStatus);
 
-  console.log(countryName);
+  useEffect(() => {
+    dispatch(loadCountryByCode(countryName as string) as unknown as IAction<string>)
+  }, [countryName, dispatch])
 
   return (
     <div>
       <Button onClick={() => navigate(-1)}>
         <IoArrowBack /> Back
       </Button>
-      {currentCountry && <Info {...currentCountry} />}
+      {currentCountry && currentStatus === Status.RECEIVED && <Info {...currentCountry} />}
     </div>
   );
 };

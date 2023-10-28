@@ -8,6 +8,7 @@ import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { ThemeNames } from '@/utils';
 import { setTheme } from '@/store/theme/theme.actions';
 import { selectCurrentTheme } from '@/store/theme/theme.selectors';
+import { clearControls } from '@/store/controls/controls.actions';
 
 const Header = (): JSX.Element => {
 
@@ -27,7 +28,7 @@ const Header = (): JSX.Element => {
     <header className={styles.header}>
       <Container>
         <div className={styles.header__wrapper}>
-          <Link className={styles.header__title} to={RoutesConstants.INDEX}>
+          <Link className={styles.header__title} to={RoutesConstants.INDEX} onClick={() => dispatch(clearControls())}>
             Where is the world?
           </Link>
           <div className={styles.header__switcher} onClick={handleChangeTheme}>

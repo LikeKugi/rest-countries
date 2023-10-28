@@ -1,33 +1,32 @@
 import { FC, JSX } from 'react';
 import { ICountry } from '@/types/countriesTypes';
 import { Link } from 'react-router-dom';
-import { RoutesConstants } from '@/routes/RoutesConstants';
 import styles from './Info.module.scss';
 
-interface IInfoProps extends ICountry {}
+interface IInfoProps extends ICountry {
+}
 
 const Info: FC<IInfoProps> = ({
   name,
-  nativeName,
-  flag,
+  flags,
   capital,
   population,
   region,
   subregion,
-  topLevelDomain,
   currencies,
   languages,
   borders,
+  tld
 }): JSX.Element => {
   return (
     <section className={styles.info}>
-      <img className={styles.info__img} src={flag} alt={name} />
+      <img className={styles.info__img} src={flags.svg} alt={name.common} />
       <div>
-        <h1 className={styles.info__title}>{name}</h1>
+        <h1 className={styles.info__title}>{name.official}</h1>
         <div className={styles.info__group}>
           <ul className={styles.info__list}>
             <li className={styles.info__item}>
-              <b>Native Name:</b> {nativeName}
+              <b>Native Name:</b> {name.nativeName.eng?.official || name.official}
             </li>
             <li className={styles.info__item}>
               <b>Population</b> {population}
@@ -45,20 +44,20 @@ const Info: FC<IInfoProps> = ({
           <ul className={styles.info__list}>
             <li className={styles.info__item}>
               <b>Top Level Domain</b>{' '}
-              {topLevelDomain.map((d) => (
+              {tld.map((d) => (
                 <span key={d}>{d}</span>
               ))}
             </li>
             <li className={styles.info__item}>
               <b>Currency</b>{' '}
-              {currencies.map((c) => (
-                <span key={c.code}>{c.name} </span>
+              {Object.entries(currencies).map(([code, {name}]) => (
+                <span key={code}>{name} </span>
               ))}
             </li>
             <li className={styles.info__item}>
               <b>Top Level Domain</b>{' '}
-              {languages.map((l) => (
-                <span key={l.name}>{l.name}</span>
+              {Object.values(languages).map((language) => (
+                <span key={language}>{language}</span>
               ))}
             </li>
           </ul>
@@ -73,7 +72,7 @@ const Info: FC<IInfoProps> = ({
                 <Link
                   className={styles.info__tag}
                   key={country}
-                  to={`${RoutesConstants.COUNTRY}/${country}`}
+                  to={`${country}`}
                 >
                   {country}
                 </Link>

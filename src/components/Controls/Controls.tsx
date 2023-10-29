@@ -10,7 +10,7 @@ import { MultiValue, SingleValue } from 'react-select';
 
 const optionsMap: Record<string, IOption> = {
   Africa: { value: 'Africa', label: 'Africa' },
-  America: { value: 'America', label: 'America' },
+  Americas: { value: 'Americas', label: 'America' },
   Asia: { value: 'Asia', label: 'Asia' },
   Europe: { value: 'Europe', label: 'Europe' },
   Oceania: { value: 'Oceania', label: 'Oceania' },

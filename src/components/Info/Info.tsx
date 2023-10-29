@@ -1,7 +1,12 @@
-import { FC, JSX } from 'react';
+import { FC, JSX, useEffect } from 'react';
 import { ICountry } from '@/types/countriesTypes';
 import { Link } from 'react-router-dom';
 import styles from './Info.module.scss';
+import { RoutesConstants } from '@/routes/RoutesConstants';
+import { useAppDispatch, useAppSelector } from '@/store/hooks';
+import { selectDetailsBorders } from '@/store/details/details.selectors';
+import { loadBorders } from '@/store/details/details.actions';
+import { IAction } from '@/store/types';
 
 interface IInfoProps extends ICountry {
 }
@@ -18,6 +23,16 @@ const Info: FC<IInfoProps> = ({
   borders,
   tld
 }): JSX.Element => {
+
+  const dispatch = useAppDispatch();
+  const neighbors = useAppSelector(selectDetailsBorders);
+
+  useEffect(() => {
+    if (Array.isArray(borders) && borders.length > 0) {
+      dispatch(loadBorders(borders) as unknown as IAction<Array<string[]>>);
+    }
+  }, [borders, dispatch])
+
   return (
     <section className={styles.info}>
       <img className={styles.info__img} src={flags.svg} alt={name.common} />
@@ -64,15 +79,15 @@ const Info: FC<IInfoProps> = ({
         </div>
         <div className={styles.info__meta}>
           <b>Border Countries</b>
-          {!borders || !borders.length ? (
+          {!neighbors || !neighbors.length ? (
             <span>There is no border countries</span>
           ) : (
             <div className={styles.info__tags}>
-              {borders.map((country) => (
+              {neighbors.map(([country, code]) => (
                 <Link
                   className={styles.info__tag}
-                  key={country}
-                  to={`${country}`}
+                  key={code}
+                  to={`${RoutesConstants.INDEX}${code}`}
                 >
                   {country}
                 </Link>

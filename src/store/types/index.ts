@@ -35,4 +35,5 @@ export interface IDetailsInitialState {
   currentCountry: ICountry | null,
   status: Status,
   error: string | null,
+  borders: string[] | null,
 }

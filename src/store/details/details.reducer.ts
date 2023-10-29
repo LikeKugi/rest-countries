@@ -7,9 +7,12 @@ const initialState: IDetailsInitialState = {
   error: null,
   status: Status.IDLE,
   borders: null,
-}
+};
 
-export const detailsReducer = (state: IDetailsInitialState = initialState, action: IAction<unknown>): IDetailsInitialState => {
+export const detailsReducer = (
+  state: IDetailsInitialState = initialState,
+  action: IAction<unknown>,
+): IDetailsInitialState => {
   switch (action.type) {
     case DetailsConstants.SET_LOADING:
       return {
@@ -39,8 +42,8 @@ export const detailsReducer = (state: IDetailsInitialState = initialState, actio
         status: Status.RECEIVED,
         error: null,
         borders: action.payload as string[],
-      }
+      };
     default:
       return state;
   }
-}
+};

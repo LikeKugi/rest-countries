@@ -9,4 +9,4 @@ export const RootReducer = combineReducers({
   countries: countriesReducer,
   controls: controlsReducer,
   details: detailsReducer,
-})
+});

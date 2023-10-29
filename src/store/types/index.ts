@@ -4,14 +4,14 @@ import { ICountry } from '@/types/countriesTypes';
 import { ControlsConstants } from '@/store/controls/controls.constants';
 import { DetailsConstants } from '@/store/details/details.constants';
 
-export type PayloadAction<T> = T
+export type PayloadAction<T> = T;
 
 export interface IAction<T> {
-  type: ThemeConstants | CountriesConstants | ControlsConstants | DetailsConstants |string,
-  payload: PayloadAction<T>
+  type: ThemeConstants | CountriesConstants | ControlsConstants | DetailsConstants | string;
+  payload: PayloadAction<T>;
 }
 
-export type createActionFn<T> = (arg?: T) => IAction<T>
+export type createActionFn<T> = (arg?: T) => IAction<T>;
 
 export const enum Status {
   IDLE = 'idle',
@@ -21,9 +21,9 @@ export const enum Status {
 }
 
 export interface ICountriesInitialState {
-  status: Status,
-  error: string | null,
-  list: ICountry[]
+  status: Status;
+  error: string | null;
+  list: ICountry[];
 }
 
 export interface IControlsInitialState {
@@ -32,8 +32,8 @@ export interface IControlsInitialState {
 }
 
 export interface IDetailsInitialState {
-  currentCountry: ICountry | null,
-  status: Status,
-  error: string | null,
-  borders: string[] | null,
+  currentCountry: ICountry | null;
+  status: Status;
+  error: string | null;
+  borders: string[] | null;
 }

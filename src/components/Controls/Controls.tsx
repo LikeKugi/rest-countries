@@ -9,22 +9,21 @@ import { setRegion } from '@/store/controls/controls.actions';
 import { MultiValue, SingleValue } from 'react-select';
 
 const optionsMap: Record<string, IOption> = {
-  'Africa': { value: 'Africa', label: 'Africa' },
-  'America': { value: 'America', label: 'America' },
-  'Asia': { value: 'Asia', label: 'Asia' },
-  'Europe': { value: 'Europe', label: 'Europe' },
-  'Oceania': { value: 'Oceania', label: 'Oceania' },
+  Africa: { value: 'Africa', label: 'Africa' },
+  America: { value: 'America', label: 'America' },
+  Asia: { value: 'Asia', label: 'Asia' },
+  Europe: { value: 'Europe', label: 'Europe' },
+  Oceania: { value: 'Oceania', label: 'Oceania' },
 };
 const options = Object.values(optionsMap);
 
 const Controls = (): JSX.Element => {
-
   const dispatch = useAppDispatch();
   const region = useAppSelector(selectControlsRegion);
 
   const handleSelect = (region: MultiValue<IOption> | SingleValue<IOption>) => {
-    dispatch(setRegion((region as IOption)?.value || ''))
-  }
+    dispatch(setRegion((region as IOption)?.value || ''));
+  };
 
   return (
     <div className={styles.controls}>

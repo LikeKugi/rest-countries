@@ -8,8 +8,7 @@ import { selectDetailsBorders } from '@/store/details/details.selectors';
 import { loadBorders } from '@/store/details/details.actions';
 import { IAction } from '@/store/types';
 
-interface IInfoProps extends ICountry {
-}
+interface IInfoProps extends ICountry {}
 
 const Info: FC<IInfoProps> = ({
   name,
@@ -21,9 +20,8 @@ const Info: FC<IInfoProps> = ({
   currencies,
   languages,
   borders,
-  tld
+  tld,
 }): JSX.Element => {
-
   const dispatch = useAppDispatch();
   const neighbors = useAppSelector(selectDetailsBorders);
 
@@ -31,7 +29,7 @@ const Info: FC<IInfoProps> = ({
     if (Array.isArray(borders) && borders.length > 0) {
       dispatch(loadBorders(borders) as unknown as IAction<Array<string[]>>);
     }
-  }, [borders, dispatch])
+  }, [borders, dispatch]);
 
   return (
     <section className={styles.info}>
@@ -65,7 +63,7 @@ const Info: FC<IInfoProps> = ({
             </li>
             <li className={styles.info__item}>
               <b>Currency</b>{' '}
-              {Object.entries(currencies).map(([code, {name}]) => (
+              {Object.entries(currencies).map(([code, { name }]) => (
                 <span key={code}>{name} </span>
               ))}
             </li>

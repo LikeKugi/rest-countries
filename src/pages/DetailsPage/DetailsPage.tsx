@@ -17,8 +17,8 @@ const DetailsPage = (): JSX.Element => {
   const currentStatus = useAppSelector(selectDetailsStatus);
 
   useEffect(() => {
-    dispatch(loadCountryByCode(countryName as string) as unknown as IAction<string>)
-  }, [countryName, dispatch])
+    dispatch(loadCountryByCode(countryName as string) as unknown as IAction<string>);
+  }, [countryName, dispatch]);
 
   return (
     <div>

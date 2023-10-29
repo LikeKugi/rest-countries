@@ -1,22 +1,29 @@
-export type DaysOfWeek = 'monday' | 'tuesday' | 'wednesday' | 'thursday' | 'friday' | 'saturday' | 'sunday'
+export type DaysOfWeek =
+  | 'monday'
+  | 'tuesday'
+  | 'wednesday'
+  | 'thursday'
+  | 'friday'
+  | 'saturday'
+  | 'sunday';
 
 export interface IBaseCountryDescription {
-  common: string,
-  official: string,
+  common: string;
+  official: string;
 }
 
 export interface INativeCountryName {
-  [T: string]: IBaseCountryDescription
+  [T: string]: IBaseCountryDescription;
 }
-export interface ICountryName extends IBaseCountryDescription{
-  nativeName: INativeCountryName
+export interface ICountryName extends IBaseCountryDescription {
+  nativeName: INativeCountryName;
 }
 
 export interface IBaseImgPath {
   svg: string;
   png: string;
 }
-export interface ICountryFlags extends IBaseImgPath{
+export interface ICountryFlags extends IBaseImgPath {
   alt?: string;
 }
 
@@ -24,7 +31,7 @@ export interface ICountryCurrency {
   [T: string]: {
     name: string;
     symbol: string;
-  }
+  };
 }
 
 export interface ICountryLanguage {
@@ -55,13 +62,13 @@ export interface ICountryDemonyms {
 }
 
 export interface ICountryMaps {
-  "googleMaps": string;
-  "openStreetMaps": string;
+  googleMaps: string;
+  openStreetMaps: string;
 }
 
 export interface ICountryCar {
-  signs: string[]
-  side: 'left' | 'right'
+  signs: string[];
+  side: 'left' | 'right';
 }
 
 export interface ICountryPostalCode {
@@ -109,7 +116,7 @@ export interface ICountry {
   startOfWeek: DaysOfWeek;
   capitalInfo: {
     latlng: number[];
-  }
+  };
   postalCode: ICountryPostalCode;
 }
 

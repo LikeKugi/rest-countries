@@ -6,7 +6,10 @@ const initialState: IControlsInitialState = {
   region: '',
 };
 
-export const controlsReducer = (state: IControlsInitialState = initialState, action: IAction<unknown>): IControlsInitialState => {
+export const controlsReducer = (
+  state: IControlsInitialState = initialState,
+  action: IAction<unknown>,
+): IControlsInitialState => {
   switch (action.type) {
     case ControlsConstants.SET_SEARCH:
       return {
@@ -17,13 +20,13 @@ export const controlsReducer = (state: IControlsInitialState = initialState, act
       return {
         ...state,
         region: action.payload as string,
-      }
+      };
     case ControlsConstants.CLEAR_CONTROLS:
       return {
         ...state,
         query: '',
         region: '',
-      }
+      };
     default:
       return state;
   }

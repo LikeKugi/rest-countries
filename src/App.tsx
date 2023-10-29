@@ -8,13 +8,13 @@ import { selectCountriesQuantity } from '@/store/countries/countries.selectors';
 
 function App() {
   const dispatch = useAppDispatch();
-  const countriesCount = useAppSelector(selectCountriesQuantity)
+  const countriesCount = useAppSelector(selectCountriesQuantity);
 
   useEffect(() => {
     if (!countriesCount) {
       dispatch(loadCountries() as unknown as IAction<ICountry[]>);
     }
-  }, [dispatch, countriesCount])
+  }, [dispatch, countriesCount]);
   return (
     <>
       <AppRouter />

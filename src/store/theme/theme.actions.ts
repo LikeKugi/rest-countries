@@ -4,5 +4,5 @@ import { ThemeNames } from '@/utils';
 
 export const setTheme: createActionFn<ThemeNames> = (theme) => ({
   type: ThemeConstants.SET_THEME,
-  payload: theme,
-})
+  payload: theme as ThemeNames,
+});

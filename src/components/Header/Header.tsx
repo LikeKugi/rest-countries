@@ -11,24 +11,27 @@ import { selectCurrentTheme } from '@/store/theme/theme.selectors';
 import { clearControls } from '@/store/controls/controls.actions';
 
 const Header = (): JSX.Element => {
-
   const dispatch = useAppDispatch();
   const theme = useAppSelector(selectCurrentTheme);
 
   useEffect(() => {
     document.body.setAttribute('data-theme', theme);
-  }, [theme])
+  }, [theme]);
 
   const handleChangeTheme = () => {
     const newTheme = theme === ThemeNames.LIGHT ? ThemeNames.DARK : ThemeNames.LIGHT;
     dispatch(setTheme(newTheme));
-  }
+  };
 
   return (
     <header className={styles.header}>
       <Container>
         <div className={styles.header__wrapper}>
-          <Link className={styles.header__title} to={RoutesConstants.INDEX} onClick={() => dispatch(clearControls())}>
+          <Link
+            className={styles.header__title}
+            to={RoutesConstants.INDEX}
+            onClick={() => dispatch(clearControls())}
+          >
             Where is the world?
           </Link>
           <div className={styles.header__switcher} onClick={handleChangeTheme}>

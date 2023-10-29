@@ -24,33 +24,54 @@ export const setCountryDetails: createActionFn<ICountry> = (country) => ({
 export const setCountryBorders: createActionFn<Array<string[]>> = (countries) => ({
   type: DetailsConstants.SET_BORDERS,
   payload: countries as Array<string[]>,
-})
+});
 
-export const loadCountryByCode = (code: string) => (dispatch: Dispatch<IAction<unknown>>, _: RootState, {
-  client,
-  api
-}: {
-  client: typeof axios, api: {
-    BASE_URL: string,
-    ALL_COUNTRIES: string,
-    searchByCountry: (arg: string) => string,
-    filterByCode: (arg: string[]) => string,
-  }
-}) => {
-  dispatch(setLoadingDetails());
-  client.get(api.filterByCode([code])).then(({ data }) => dispatch(setCountryDetails(data[0]))).catch(e => dispatch(setCountriesError(e.message)));
-};
+export const loadCountryByCode =
+  (code: string) =>
+  (
+    dispatch: Dispatch<IAction<unknown>>,
+    _: RootState,
+    {
+      client,
+      api,
+    }: {
+      client: typeof axios;
+      api: {
+        BASE_URL: string;
+        ALL_COUNTRIES: string;
+        searchByCountry: (arg: string) => string;
+        filterByCode: (arg: string[]) => string;
+      };
+    },
+  ) => {
+    dispatch(setLoadingDetails());
+    client
+      .get(api.filterByCode([code]))
+      .then(({ data }) => dispatch(setCountryDetails(data[0])))
+      .catch((e) => dispatch(setCountriesError(e.message)));
+  };
 
-export const loadBorders = (borders: string[]) => (dispatch: Dispatch<IAction<unknown>>, _: RootState, {
-  client,
-  api
-}: {
-  client: typeof axios, api: {
-    BASE_URL: string,
-    ALL_COUNTRIES: string,
-    searchByCountry: (arg: string) => string,
-    filterByCode: (arg: string[]) => string,
-  }
-}) => {
-  client.get(api.filterByCode(borders)).then(({data}) => dispatch(setCountryBorders(data.map((c: ICountry) => [c.name.official, c.cca3]))))
-}
+export const loadBorders =
+  (borders: string[]) =>
+  (
+    dispatch: Dispatch<IAction<unknown>>,
+    _: RootState,
+    {
+      client,
+      api,
+    }: {
+      client: typeof axios;
+      api: {
+        BASE_URL: string;
+        ALL_COUNTRIES: string;
+        searchByCountry: (arg: string) => string;
+        filterByCode: (arg: string[]) => string;
+      };
+    },
+  ) => {
+    client
+      .get(api.filterByCode(borders))
+      .then(({ data }) =>
+        dispatch(setCountryBorders(data.map((c: ICountry) => [c.name.official, c.cca3]))),
+      );
+  };
